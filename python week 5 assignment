@@ -1,0 +1,92 @@
+Python
+
+# Assignment 1: Design Your Own Class! 🏗️
+
+class Smartphone:
+    def __init__(self, brand, model, storage, battery):
+        self.brand = brand
+        self.model = model
+        self.storage = storage
+        self.battery = battery
+        self.is_on = False
+
+    def power_on(self):
+        self.is_on = True
+        print(f"{self.brand} {self.model} is now on.")
+
+    def power_off(self):
+        self.is_on = False
+        print(f"{self.brand} {self.model} is now off.")
+
+    def display_specs(self):
+        print(f"Brand: {self.brand}, Model: {self.model}, Storage: {self.storage}GB, Battery: {self.battery}mAh")
+
+class GamingPhone(Smartphone): # Inheritance example.
+    def __init__(self, brand, model, storage, battery, cooling_system):
+        super().__init__(brand, model, storage, battery)
+        self.cooling_system = cooling_system
+
+    def display_specs(self): #Polymorphism example, overriding the parent method.
+        super().display_specs()
+        print(f"Cooling System: {self.cooling_system}")
+
+
+# Example Usage for Assignment 1
+my_phone = Smartphone("Google", "Pixel 8", 128, 4500)
+my_phone.power_on()
+my_phone.display_specs()
+my_phone.power_off()
+
+gaming_phone = GamingPhone("Asus", "ROG Phone 7", 512, 6000, "Vapor Chamber")
+gaming_phone.power_on()
+gaming_phone.display_specs()
+gaming_phone.power_off()
+
+
+# Activity 2: Polymorphism Challenge! 🎭
+
+class Animal:
+    def move(self):
+        pass  # Abstract method
+
+class Dog(Animal):
+    def move(self):
+        print("Running 🐕")
+
+class Bird(Animal):
+    def move(self):
+        print("Flying 🐦")
+
+class Fish(Animal):
+    def move(self):
+        print("Swimming 🐟")
+
+class Vehicle:
+    def move(self):
+        pass
+
+class Car(Vehicle):
+    def move(self):
+        print("Driving 🚗")
+
+class Plane(Vehicle):
+    def move(self):
+        print("Flying ✈️")
+
+# Example Usage for Activity 2
+dog = Dog()
+bird = Bird()
+fish = Fish()
+car = Car()
+plane = Plane()
+
+animals = [dog, bird, fish]
+vehicles = [car, plane]
+
+print("\nAnimal Movements:")
+for animal in animals:
+    animal.move()
+
+print("\nVehicle Movements:")
+for vehicle in vehicles:
+    vehicle.move()

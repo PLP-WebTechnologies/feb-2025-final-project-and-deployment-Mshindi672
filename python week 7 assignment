@@ -1,0 +1,66 @@
+Python
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Task 1: Load and Explore the Dataset
+# Using the Iris dataset as an example
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+column_names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
+iris_df = pd.read_csv(url, names=column_names)
+
+print("First few rows:")
+print(iris_df.head())
+
+print("\nData types and missing values:")
+print(iris_df.info())
+
+# No missing values in the Iris dataset, so no cleaning is needed.
+
+# Task 2: Basic Data Analysis
+print("\nBasic statistics:")
+print(iris_df.describe())
+
+print("\nMean petal length per species:")
+print(iris_df.groupby('species')['petal_length'].mean())
+
+# Interesting Findings:
+# - Iris-setosa has the smallest petal length and width.
+# - Iris-virginica has the largest petal length and width.
+# - There is a clear separation between species based on petal dimensions.
+
+# Task 3: Data Visualization
+
+# Bar chart: Average petal length per species
+plt.figure(figsize=(8, 6))
+sns.barplot(x='species', y='petal_length', data=iris_df)
+plt.title('Average Petal Length per Species')
+plt.xlabel('Species')
+plt.ylabel('Petal Length')
+plt.show()
+
+# Histogram: Distribution of sepal length
+plt.figure(figsize=(8, 6))
+sns.histplot(iris_df['sepal_length'], kde=True)
+plt.title('Distribution of Sepal Length')
+plt.xlabel('Sepal Length')
+plt.ylabel('Frequency')
+plt.show()
+
+# Scatter plot: Sepal length vs. petal length
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='sepal_length', y='petal_length', hue='species', data=iris_df)
+plt.title('Sepal Length vs. Petal Length')
+plt.xlabel('Sepal Length')
+plt.ylabel('Petal Length')
+plt.legend(title='Species')
+plt.show()
+
+#Box plot: petal width distribution by species
+plt.figure(figsize=(8,6))
+sns.boxplot(x='species', y='petal_width', data=iris_df)
+plt.title('Petal Width Distribution by Species')
+plt.xlabel('Species')
+plt.ylabel('Petal Width')
+plt.show()
